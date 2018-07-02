@@ -69,7 +69,7 @@ public:
    * Requires permissions for actor.
    */
   //@abi action
-  void transfer(const account_name token_master, const account_name to,
+  void mint(const account_name token_master, const account_name to,
                 const asset &quantity, const std::string &memo)
   {
     eosio_assert(quantity.is_valid(), "invalid quantity");
@@ -106,4 +106,4 @@ private:
   exchange_index exchanges;
 };
 
-EOSIO_ABI(DUCExchanger, (exchange)(confirm)(transfer))
+EOSIO_ABI(DUCExchanger, (exchange)(confirm)(mint))
