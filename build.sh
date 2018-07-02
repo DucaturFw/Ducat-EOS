@@ -1,0 +1,1 @@
+eosiocpp -o token.wast ducat.exchange.cpp && eosiocpp -g token.abi ducat.exchange.cpp
