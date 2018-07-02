@@ -53,29 +53,7 @@ public:
   }
 
   //@abi action
-  void expired(const uint64_t &id)
-  {
-    auto exchange_offer_itr = exchanges.find( id );
-    eosio_assert( exchange_offer_itr != exchanges.end(), "unknown exchange request id" );
-    eosio_assert( exchange_offer_itr->pubtime != eosio::time_point_sec(0)
-                  && eosio::time_point_sec(now()) > exchange_offer_itr->pubtime + EXPIRATION_TIME,
-                  "exchange not expired" );
-    eosio_assert( exchange_offer_itr->txid == "", "Already exchanged" );
-
-    action(
-        permission_level{_self, N(active)},
-        N(eosio.token), N(transfer),
-        std::make_tuple(_self, exchange_offer_itr->from, exchange_offer_itr->amount, exchange_offer_itr->blockchain + exchange_offer_itr->to))
-        .send();
-
-    exchanges.modify( exchange_offer_itr, 0, [&]( auto& offer ) {
-        offer.txid = "Failed due to expiration";
-        offer.amount -= offer.amount; // set to 0
-    });
-  }
-
-  //@abi action
-  void close(const uint64_t &id, const std::string &txid)
+  void confirm(const uint64_t &id, const std::string &txid)
   {
     require_auth( _self );
     auto exchange_offer_itr = exchanges.find( id );
@@ -128,4 +106,4 @@ private:
   exchange_index exchanges;
 };
 
-EOSIO_ABI(DUCExchanger, (exchange)(expired)(close)(transfer))
+EOSIO_ABI(DUCExchanger, (exchange)(confirm)(transfer))
