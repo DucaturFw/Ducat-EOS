@@ -43,7 +43,7 @@ public:
 
     action(
         permission_level{from, N(active)},
-        N(eosio.token), N(transfer),
+        N(ducaturtoken), N(transfer),
         std::make_tuple(from, _self, quantity, blockchain))
         .send();
 
@@ -77,7 +77,7 @@ public:
 
     action(
         permission_level{token_master, N(active)},
-        N(eosio.token), N(transfer),
+        N(ducaturtoken), N(transfer),
         std::make_tuple(token_master, to, quantity, memo))
         .send();
   }
