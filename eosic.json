@@ -1,0 +1,23 @@
+{
+  "name": "eoscontracts",
+  "version": "0.0.1",
+  "description": "Crosschain Token contracts",
+  "tests": "./test",
+  "migrations": "./migrate",
+  "contracts": {
+    "ducaturtoken": {
+      "name": "ducaturtoken",
+      "version": "0.0.1.1",
+      "description": "Token with holders list",
+      "entry": "ducaturtoken.cpp",
+      "checksum": "6554547dcfc7f85dff1dca1873c534a6"
+    },
+    "ducatexchange": {
+      "name": "ducatexchange",
+      "version": "0.0.1.1",
+      "description": "Generic EOS contract",
+      "entry": "ducatexchange.cpp",
+      "checksum": "cdce5c0480099d0675c17c5345e00295"
+    }
+  }
+}
