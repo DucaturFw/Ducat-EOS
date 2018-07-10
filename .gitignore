@@ -1,4 +1,6 @@
-/node_modules
-yarn-error.log
-npm-debug.log
-/logs/
+builtin
+bashrc
+.DS_Store
+*.log
+node_modules
+bin
